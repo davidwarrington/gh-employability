@@ -1,19 +1,28 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+// import logo from './logo.svg';
 import './App.css';
+import UsernameInput from './Components/Homepage/UsernameInput/UsernameInput.jsx';
+import Header from './Components/Header/Header.jsx';
+
+const Home = () => (
+  <UsernameInput />
+);
+
+const TaskView = () => (
+  <Header />
+);
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
+      <Router>
+        <div className="App">
+            <Route exact path="/" component={Home}/>
+            <Route exact path="/:username" component={TaskView}/>
+            <Route exact path="/:username/all" component={TaskView}/>
+        </div>
+      </Router>
     );
   }
 }
