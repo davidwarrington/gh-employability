@@ -5,10 +5,12 @@ import './App.css';
 import UsernameInput from './Components/Homepage/UsernameInput/UsernameInput.jsx';
 import Header from './Components/Header/Header.jsx';
 
+let username = 'davidwarrington';
+
 let results;
 
 // Use Fetch API for getting info from GitHub API
-fetch('https://api.github.com/users/davidwarrington')
+fetch(`https://api.github.com/users/${username}`)
   .then(function(response) {
     return response.json()
   }).then(function(json) {
