@@ -7,15 +7,15 @@ import Header from './Components/Header/Header.jsx';
 
 let username = 'davidwarrington';
 
-let results;
+let user_data;
 
 // Use Fetch API for getting info from GitHub API
 fetch(`https://api.github.com/users/${username}`)
   .then(function(response) {
     return response.json()
   }).then(function(json) {
-    results = json;
-    console.log(results)
+    user_data = json;
+    console.log(user_data)
     questions.forEach(question => {
       question.status = testQuery({ key: question.key });
       console.log(question.status);
@@ -24,7 +24,7 @@ fetch(`https://api.github.com/users/${username}`)
     console.log('parsing failed', ex)
   });
 
-const testQuery = opts => results[opts.key] ? true : false;
+const testQuery = opts => user_data[opts.key] ? 'complete' : 'incomplete';
 
 const questions = [
   {

@@ -10,7 +10,7 @@ const usernameInput = () => {
                 <h1 className="App-title">GitHub Employability Profiler</h1>
                 <input type="text"/>
                 <button type="submit">GO</button>
-                <Link to={'/Forward'}>Forward</Link>
+                <Link to={'/forward'}>Forward</Link>
             </header>
         </div>  
     );
