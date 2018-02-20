@@ -9,8 +9,10 @@ const Home = () => (
   <UsernameInput />
 );
 
-const TaskView = () => (
-  <Header />
+const TaskView = (props) => (
+  <div>
+    <Header username={props.match.params.username} />
+  </div>
 );
 
 class App extends Component {
