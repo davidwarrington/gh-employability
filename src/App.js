@@ -2,27 +2,18 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 // import logo from './logo.svg';
 import './App.css';
+
+// Import React Components
 import UsernameInput from './Components/Homepage/UsernameInput/UsernameInput.jsx';
 import Header from './Components/Header/Header.jsx';
 
+// Import functions for handling data in back-end
+import api_req from './Functions/api';
+
 let username = 'davidwarrington';
+api_req(username);
 
 let user_data;
-
-// Use Fetch API for getting info from GitHub API
-fetch(`https://api.github.com/users/${username}`)
-  .then(function(response) {
-    return response.json()
-  }).then(function(json) {
-    user_data = json;
-    console.log(user_data)
-    questions.forEach(question => {
-      question.status = testQuery({ key: question.key });
-      console.log(question.status);
-    });
-  }).catch(function(ex) {
-    console.log('parsing failed', ex)
-  });
 
 const testQuery = opts => user_data[opts.key] ? 'complete' : 'incomplete';
 
