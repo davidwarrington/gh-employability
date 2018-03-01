@@ -1,15 +1,17 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 // import logo from './logo.svg';
 import './App.css';
 
 // Import React Components
-import UsernameInput from './Components/UsernameInput/UsernameInput.jsx';
-import Header from './Components/Header/Header.jsx';
-import TaskList from './Components/TaskList/TaskList.jsx'
+// import UsernameInput from './Components/UsernameInput/UsernameInput.jsx';
+// import Header from './Components/Header/Header.jsx';
+// import TaskList from './Components/TaskList/TaskList.jsx';
+import Home from './screens/Home';
+import User from './screens/User';
 
 // Import functions for handling data in back-end
-import api_req from './Functions/api';
+// import api_req from './Functions/api';
 
 class App extends Component {
   constructor(props) {
@@ -68,6 +70,19 @@ class App extends Component {
   render() {
     return (
       <Router>
+        <Switch>
+          <Route 
+            exact
+            path="/" 
+            component={Home}
+          />
+          <Route 
+            path="/:username"
+            render={({ match, history }) => <User match={match} history={history}/>}
+          />
+        </Switch>
+      </Router>
+      /* <Router>
         <div className="App">
           <Route 
             exact 
@@ -103,7 +118,7 @@ class App extends Component {
                     }
           />
         </div>
-      </Router>
+      </Router> */
     );
   }
 }
