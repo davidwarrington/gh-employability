@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
-import logo from '../../../logo.svg';
+import logo from '../../logo.svg';
 
 const usernameInput = (props) => {
     return (

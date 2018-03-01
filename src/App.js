@@ -4,37 +4,12 @@ import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import './App.css';
 
 // Import React Components
-import UsernameInput from './Components/Homepage/UsernameInput/UsernameInput.jsx';
+import UsernameInput from './Components/UsernameInput/UsernameInput.jsx';
 import Header from './Components/Header/Header.jsx';
+import TaskList from './Components/TaskList/TaskList.jsx'
 
 // Import functions for handling data in back-end
 import api_req from './Functions/api';
-
-// let user_data;
-
-// const testQuery = opts => user_data[opts.key] ? 'complete' : 'incomplete';
-
-// const questions = [
-//   {
-//     "query": "has_name",
-//     "type": "boolean",
-//     "key": "name",
-//     "status": false
-//   },
-//   {
-//     "query": "has_email",
-//     "type": "boolean",
-//     "key": "email",
-//     "status": false
-//   }
-// ];
-
-// console.log(questions[0].status());
-
-const TaskView = (props) => (
-  <Header 
-    username={props.username} />
-);
 
 class App extends Component {
   constructor(props) {
@@ -42,7 +17,13 @@ class App extends Component {
 
     this.state = {
       username: '',
-      user_info: null
+      user_info: null,
+
+      tests: [
+        { id: 'has_name', key: 'name', status: false, type: 'boolean', value: null },
+        { id: 'has_bio', key: 'bio', status: false, type: 'boolean', value: null },
+        { id: 'has_company', key: 'company', status: false, type: 'boolean', value: null }
+      ]
     };
 
     this.usernameChangeHandler = this.usernameChangeHandler.bind(this);
@@ -63,50 +44,64 @@ class App extends Component {
     fetch(`https://api.github.com/users/${this.state.username}`)
       .then(response => response.json())
       .then(json => {
-        json.message === "Not Found" ? console.error('Uh Oh') : this.setState({ user_info: json });
-
-          // questions.forEach(question => {
-          //     question.status = testQuery({ key: question.key });
-          //     console.log(question.status);
-          // });
+        json.message === "Not Found" ? console.error('User does not exist') : this.setState({ user_info: json });
       })
-      .catch(function(ex) {
-          console.log('parsing failed', ex)
-      });
+      .then(() => {
+        this.state.tests.forEach(test => {
+          this.testQuery(test) ? test.status = true : test.status = false;
+        });
+      })
+      .catch(ex => console.log('Parsing Failed', ex));
   }
+
+  testQuery = (test) => {
+    if (test.type === 'boolean') {
+      if (this.state.user_info[test.key]) {
+        test.value = this.state.user_info[test.key];
+        return true;
+      } else {
+        return false;
+      }
+    }
+  };
 
   render() {
     return (
       <Router>
         <div className="App">
-            <Route 
-              exact 
-              path="/" 
-              render={() => <UsernameInput 
-                              {...this.state}
-                              change={this.usernameChangeHandler}
-                              submit={this.usernameSubmitHandler}
-                            />
-                     }
-            />
-            <Route 
-              exact 
-              path="/:username" 
-              render={({ match }) => <TaskView
+          <Route 
+            exact 
+            path="/" 
+            render={() => <UsernameInput 
+                            {...this.state}
+                            change={this.usernameChangeHandler}
+                            submit={this.usernameSubmitHandler}
+                          />
+                    }
+          />
+          <Route 
+            exact 
+            path="/:username" 
+            render={({ match }) => <div>
+                                     <Header 
                                       {...this.state}
                                       username={match.params.username}
                                      />
-                     }
-            />
-            <Route 
-              exact 
-              path="/:username/all" 
-              render={({ match }) => <TaskView
+                                     <TaskList 
                                       {...this.state}
-                                      username={match.params.username}
                                      />
-                     }
-            />
+                                   </div>
+                    }
+          />
+          <Route 
+            exact 
+            path="/:username/all" 
+            render={({ match }) => <Header 
+                                    {...this.state}
+                                    username={match.params.username}
+                                    />
+                    }
+          />
         </div>
       </Router>
     );
