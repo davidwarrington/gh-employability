@@ -8,7 +8,7 @@ class Header extends Component {
                     : { text: 'View Previous', url: `${this.props.match.url}` };
 
         return (
-            <header className="row">
+            <header className="row bg-light">
                 <div className="col-12">
                     <h2>{this.props.username}</h2>
                     <Link 
