@@ -10,6 +10,11 @@ class Header extends Component {
         return (
             <header className="row bg-light">
                 <div className="col-12">
+                    {/* <img 
+                        src={this.props.avatar_url} 
+                        alt={this.props.username} 
+                        className="rounded"
+                    /> */}
                     <h2>{this.props.username}</h2>
                     <Link 
                         to={btn.url} 
