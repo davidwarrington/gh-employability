@@ -12,9 +12,12 @@ class User extends Component {
             username: this.props.match.params.username,
             api_data: null,
             api_tests: [
-                { id: 'has_name', api_key: 'name', status: false, type: 'boolean', answer: null },
-                { id: 'has_bio', api_key: 'bio', status: false, type: 'boolean', answer: null },
-                { id: 'has_company', api_key: 'company', status: false, type: 'boolean', answer: null }
+                { id: 'has_name', api_key: 'name', status: false, type: 'boolean', answer: 'null' },
+                { id: 'has_bio', api_key: 'bio', status: false, type: 'boolean', answer: 'null' },
+                { id: 'has_email', api_key: 'email', status: false, type: 'boolean', answer: 'null' },
+                { id: 'has_website', api_key: 'blog', status: false, type: 'boolean', answer: 'null' },
+                { id: 'has_location', api_key: 'location', status: false, type: 'boolean', answer: 'null' },
+                { id: 'is_hireable', api_key: 'hireable', status: false, type: 'boolean', answer: 'null' }
             ],
             tests_complete: false
         }
