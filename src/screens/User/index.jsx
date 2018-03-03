@@ -3,6 +3,7 @@ import { Route } from 'react-router-dom';
 
 import Header from './components/Header';
 import TaskCard from './components/TaskCard';
+import NavButton from './components/Task__NavButton';
 
 class User extends Component {
     constructor(props) {
@@ -10,6 +11,7 @@ class User extends Component {
 
         this.state = {
             username: this.props.match.params.username,
+            avatar_url: '#',
             api_data: null,
             api_tests: [
                 { id: 'has_name', api_key: 'name', status: false, type: 'boolean', answer: 'null' },
@@ -19,7 +21,8 @@ class User extends Component {
                 { id: 'has_location', api_key: 'location', status: false, type: 'boolean', answer: 'null' },
                 { id: 'is_hireable', api_key: 'hireable', status: false, type: 'boolean', answer: 'null' }
             ],
-            tests_complete: false
+            tests_complete: false,
+            current_test: 0
         }
     }
 
@@ -34,11 +37,12 @@ class User extends Component {
             .then(() => {
                 this.setState({
                     username: this.state.api_data.login,
+                    avatar_url: this.state.api_data.avatar_url
                 })
             })
             .then(() => {
                 this.state.api_tests.forEach(test => {
-                    console.log(test);
+                    // console.log(test);
                     this.testQuery(test) ? test.status = true : test.status = false;
                 });
                 this.setState({ tests_complete: true });
@@ -57,16 +61,49 @@ class User extends Component {
         }
     };
 
+    taskNavHandler = (p) => {
+        this.setState({ current_test: p })
+    }
+
     render() {
         return (
             <div className="container-fluid">
-                <Header username={this.state.username} match={this.props.match} />
+                <Header 
+                    username={this.state.username} 
+                    match={this.props.match} 
+                    avatar_url={this.state.avatar_url}
+                />
                 <Route 
                     exact
                     path="/:username"
-                    render={() => <ul className="row list-unstyled">
-                                    <TaskCard test={this.state.api_tests[0]} index={0} />
-                                  </ul>
+                    render={() => <div>
+                                    <ul className="row list-unstyled">
+                                        <TaskCard test={this.state.api_tests[this.state.current_test]} index={this.state.current_test} />
+                                        {/* <TaskCard test={this.state.api_tests[this.state.next_test]} index={this.state.next_test} /> */}
+                                    </ul>
+                                    <div className="btn-group">
+                                        {/* <button 
+                                            className="btn btn-info"
+                                            onClick={this.changeTaskHandler}>
+                                            Previous
+                                        </button>
+                                        <button 
+                                            className="btn btn-info"
+                                            onClick={this.changeTaskHandler}>
+                                            Next
+                                        </button> */}
+                                        <NavButton 
+                                            text="Previous"
+                                            task_index={this.state.current_test - 1}
+                                            navHandler={this.taskNavHandler}
+                                        />
+                                        <NavButton 
+                                            text="Next"
+                                            task_index={this.state.current_test + 1}
+                                            navHandler={this.taskNavHandler}
+                                        />
+                                    </div>
+                                  </div>
                             }
                 />
                 <Route 
