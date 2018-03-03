@@ -66,6 +66,13 @@ class User extends Component {
     }
 
     render() {
+        const next_test = this.state.current_test === this.state.api_tests.length - 1 
+                            ? 0 
+                            : this.state.current_test + 1;
+        const prev_test = this.state.current_test === 0 
+                            ? this.state.api_tests.length - 1 
+                            : this.state.current_test - 1;
+        
         return (
             <div className="container-fluid">
                 <Header 
@@ -94,12 +101,12 @@ class User extends Component {
                                         </button> */}
                                         <NavButton 
                                             text="Previous"
-                                            task_index={this.state.current_test - 1}
+                                            task_index={prev_test}
                                             navHandler={this.taskNavHandler}
                                         />
                                         <NavButton 
                                             text="Next"
-                                            task_index={this.state.current_test + 1}
+                                            task_index={next_test}
                                             navHandler={this.taskNavHandler}
                                         />
                                     </div>
