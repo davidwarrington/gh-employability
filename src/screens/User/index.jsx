@@ -12,13 +12,14 @@ class User extends Component {
             username: this.props.match.params.username,
             api_data: null,
             api_tests: [
-                { id: 'has_name', api_key: 'name', status: false, type: 'boolean', answer: 'null' },
-                { id: 'has_bio', api_key: 'bio', status: false, type: 'boolean', answer: 'null' },
-                { id: 'has_email', api_key: 'email', status: false, type: 'boolean', answer: 'null' },
-                { id: 'has_website', api_key: 'blog', status: false, type: 'boolean', answer: 'null' },
-                { id: 'has_location', api_key: 'location', status: false, type: 'boolean', answer: 'null' },
-                { id: 'is_hireable', api_key: 'hireable', status: false, type: 'boolean', answer: 'null' },
-                { id: 'num_repos', api_key: 'public_repos', status: false, type: 'num', answer: 'null' }
+                { id: 'has_name', api_key: 'name', status: false, type: 'boolean', answer: null },
+                { id: 'has_bio', api_key: 'bio', status: false, type: 'boolean', answer: null },
+                { id: 'has_email', api_key: 'email', status: false, type: 'boolean', answer: null },
+                { id: 'has_website', api_key: 'blog', status: false, type: 'boolean', answer: null },
+                { id: 'has_location', api_key: 'location', status: false, type: 'boolean', answer: null },
+                { id: 'is_hireable', api_key: 'hireable', status: false, type: 'boolean', answer: null },
+                { id: 'num_repos', api_key: 'public_repos', status: false, type: 'num', answer: null, 
+                    min_val: 1, max_val: 6 }
             ],
             tests_complete: false
         }
@@ -39,8 +40,8 @@ class User extends Component {
             })
             .then(() => {
                 this.state.api_tests.forEach(test => {
-                    console.log(test);
-                    this.testQuery(test) ? test.status = true : test.status = false;
+                    // console.log(test);
+                    test.status = this.testQuery(test);
                 });
                 this.setState({ tests_complete: true });
             })
@@ -48,24 +49,35 @@ class User extends Component {
     }
 
     testQuery = (test) => {
+        let test_value = this.state.api_data[test.api_key];
         if (test.type === 'boolean') {
-            if (this.state.api_data[test.api_key]) {
-                test.answer = this.state.api_data[test.api_key];
+            if (test_value) {
+                test.answer = test_value;
                 return true;
             } else {
                 return false;
             }
         } else if (test.type === 'num') {
-            if (this.state.api_data[test.api_key]) {
-                test.answer =  this.state.api_data[test.api_key];
+            if (test_value >= test.max_val) {
+                test.answer =  test_value;
                 return true;
+            } else if (test_value >= test.min_val) {
+                test.answer =  test_value;
+                return test_value;
             } else {
-                return false
+                return false;
             }
         }
     };
 
     render() {
+        let failed_tests = [];
+        this.state.api_tests.forEach((test, index) => {
+            if (!test.status) {
+                failed_tests.push(index);
+            }
+        })
+        console.log(failed_tests);
         return (
             <div className="container-fluid">
                 <Header username={this.state.username} match={this.props.match} />
@@ -81,7 +93,7 @@ class User extends Component {
                     exact
                     path="/:username/all"
                     render={() => <ul className="row list-unstyled">
-                                    {this.state.api_tests.map((test, index) => <TaskCard test={test} index={index} key={index}/>)}
+                                    {this.state.api_tests.filter(test => !test.status).map((test, index) => <TaskCard test={test} index={index} key={index}/>)}
                                   </ul>
                             }
                 />
