@@ -4,6 +4,8 @@ class TaskCard extends Component {
     answer = test => {
         if (this.props.test.type === 'boolean') {
             return `Your ${test.api_key} is: "${test.answer}"`; 
+        } else if (this.props.test.type === 'num') {
+            return `Your ${test.api_key} is: "${test.answer}"`; 
         }
     }
 

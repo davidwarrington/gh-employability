@@ -17,7 +17,8 @@ class User extends Component {
                 { id: 'has_email', api_key: 'email', status: false, type: 'boolean', answer: 'null' },
                 { id: 'has_website', api_key: 'blog', status: false, type: 'boolean', answer: 'null' },
                 { id: 'has_location', api_key: 'location', status: false, type: 'boolean', answer: 'null' },
-                { id: 'is_hireable', api_key: 'hireable', status: false, type: 'boolean', answer: 'null' }
+                { id: 'is_hireable', api_key: 'hireable', status: false, type: 'boolean', answer: 'null' },
+                { id: 'num_repos', api_key: 'public_repos', status: false, type: 'num', answer: 'null' }
             ],
             tests_complete: false
         }
@@ -53,6 +54,13 @@ class User extends Component {
                 return true;
             } else {
                 return false;
+            }
+        } else if (test.type === 'num') {
+            if (this.state.api_data[test.api_key]) {
+                test.answer =  this.state.api_data[test.api_key];
+                return true;
+            } else {
+                return false
             }
         }
     };
