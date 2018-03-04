@@ -14,12 +14,14 @@ class User extends Component {
             avatar_url: '#',
             api_data: null,
             api_tests: [
-                { id: 'has_name', api_key: 'name', status: false, type: 'boolean', answer: 'null' },
-                { id: 'has_bio', api_key: 'bio', status: false, type: 'boolean', answer: 'null' },
-                { id: 'has_email', api_key: 'email', status: false, type: 'boolean', answer: 'null' },
-                { id: 'has_website', api_key: 'blog', status: false, type: 'boolean', answer: 'null' },
-                { id: 'has_location', api_key: 'location', status: false, type: 'boolean', answer: 'null' },
-                { id: 'is_hireable', api_key: 'hireable', status: false, type: 'boolean', answer: 'null' }
+                { id: 'has_name', api_key: 'name', status: false, type: 'boolean', answer: null },
+                { id: 'has_bio', api_key: 'bio', status: false, type: 'boolean', answer: null },
+                { id: 'has_email', api_key: 'email', status: false, type: 'boolean', answer: null },
+                { id: 'has_website', api_key: 'blog', status: false, type: 'boolean', answer: null },
+                { id: 'has_location', api_key: 'location', status: false, type: 'boolean', answer: null },
+                { id: 'is_hireable', api_key: 'hireable', status: false, type: 'boolean', answer: null },
+                { id: 'num_repos', api_key: 'public_repos', status: false, type: 'num', answer: null, 
+                    min_val: 1, max_val: 6 }
             ],
             tests_complete: false,
             current_test: 0
@@ -43,7 +45,7 @@ class User extends Component {
             .then(() => {
                 this.state.api_tests.forEach(test => {
                     // console.log(test);
-                    this.testQuery(test) ? test.status = true : test.status = false;
+                    test.status = this.testQuery(test);
                 });
                 this.setState({ tests_complete: true });
             })
@@ -51,10 +53,21 @@ class User extends Component {
     }
 
     testQuery = (test) => {
+        let test_value = this.state.api_data[test.api_key];
         if (test.type === 'boolean') {
-            if (this.state.api_data[test.api_key]) {
-                test.answer = this.state.api_data[test.api_key];
+            if (test_value) {
+                test.answer = test_value;
                 return true;
+            } else {
+                return false;
+            }
+        } else if (test.type === 'num') {
+            if (test_value >= test.max_val) {
+                test.answer =  test_value;
+                return true;
+            } else if (test_value >= test.min_val) {
+                test.answer =  test_value;
+                return test_value;
             } else {
                 return false;
             }
@@ -66,13 +79,14 @@ class User extends Component {
     }
 
     render() {
-        const next_test = this.state.current_test === this.state.api_tests.length - 1 
+        const failed_tests = this.state.api_tests.filter(test => !test.status);
+        const next_test = this.state.current_test === failed_tests.length - 1 
                             ? 0 
                             : this.state.current_test + 1;
         const prev_test = this.state.current_test === 0 
-                            ? this.state.api_tests.length - 1 
+                            ? failed_tests.length - 1 
                             : this.state.current_test - 1;
-        
+
         return (
             <div className="container-fluid">
                 <Header 
@@ -85,20 +99,12 @@ class User extends Component {
                     path="/:username"
                     render={() => <div>
                                     <ul className="row list-unstyled">
-                                        <TaskCard test={this.state.api_tests[this.state.current_test]} index={this.state.current_test} />
-                                        {/* <TaskCard test={this.state.api_tests[this.state.next_test]} index={this.state.next_test} /> */}
+                                        <TaskCard 
+                                            test={failed_tests[this.state.current_test]} 
+                                            index={this.state.current_test} 
+                                        />
                                     </ul>
                                     <div className="btn-group">
-                                        {/* <button 
-                                            className="btn btn-info"
-                                            onClick={this.changeTaskHandler}>
-                                            Previous
-                                        </button>
-                                        <button 
-                                            className="btn btn-info"
-                                            onClick={this.changeTaskHandler}>
-                                            Next
-                                        </button> */}
                                         <NavButton 
                                             text="Previous"
                                             task_index={prev_test}
