@@ -8,20 +8,62 @@ class Header extends Component {
                     : { text: 'View Previous', url: `${this.props.match.url}` };
 
         return (
-            <header className="row bg-light">
-                <div className="col-12">
-                    {/* <img 
+            <header className="bg-light" id="page-top">
+                {/* <div className="col-12">
+                    <img 
                         src={this.props.avatar_url} 
                         alt={this.props.username} 
                         className="rounded"
-                    /> */}
+                    />
                     <h2>{this.props.username}</h2>
-                    <Link 
-                        to={btn.url} 
-                        className="btn btn-info">
-                            {btn.text}
-                    </Link>
-                </div>
+                    <div className="btn-group">
+                        <Link 
+                            to={btn.url} 
+                            className="btn btn-info">
+                                {btn.text}
+                        </Link>
+                        <Link
+                            to='/'
+                            className="btn btn-danger">
+                            Exit
+                        </Link>
+                    </div>
+                </div> */}
+
+                <nav className="navbar navbar-expand-sm navbar-light justify-content-space-between">
+                    <div className="container-fluid">
+                        <a 
+                            href="#page-top" 
+                            className="navbar-brand"
+                        >
+                            {this.props.username}
+                        </a>
+
+                        <div className="collapse navbar-collapse">
+                            <ul className="navbar-nav">
+                                <div className="btn-group">
+                                    <li
+                                        className="nav-item btn btn-info">
+                                        <Link 
+                                            to={btn.url} 
+                                            className="nav-link text-light">
+                                                {btn.text}
+                                        </Link>
+                                    </li>
+                                    <li 
+                                        className="nav-item btn btn-danger">
+                                        <Link
+                                            to='/'
+                                            className="nav-link text-light">
+                                            Exit
+                                        </Link>
+                                    </li>
+                                </div>
+                            </ul>
+                        </div>
+                    </div>
+
+                </nav>
             </header>
         );
     }

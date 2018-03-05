@@ -14,14 +14,22 @@ class User extends Component {
             avatar_url: '#',
             api_data: null,
             api_tests: [
-                { id: 'has_name', api_key: 'name', status: false, type: 'boolean', answer: null },
-                { id: 'has_bio', api_key: 'bio', status: false, type: 'boolean', answer: null },
-                { id: 'has_email', api_key: 'email', status: false, type: 'boolean', answer: null },
-                { id: 'has_website', api_key: 'blog', status: false, type: 'boolean', answer: null },
-                { id: 'has_location', api_key: 'location', status: false, type: 'boolean', answer: null },
-                { id: 'is_hireable', api_key: 'hireable', status: false, type: 'boolean', answer: null },
+                { id: 'has_name', api_key: 'name', status: false, type: 'boolean', answer: null, 
+                    fail_message: 'You have no name set. Change this to let an employer know who you are.' },
+                { id: 'has_bio', api_key: 'bio', status: false, type: 'boolean', answer: null, 
+                    fail_message: 'Write a brief bio to give potential employers an idea of what makes you tick.' },
+                { id: 'has_email', api_key: 'email', status: false, type: 'boolean', answer: null, 
+                    fail_message: 'You have no email address available. Change this to let employers contact you.' },
+                { id: 'has_website', api_key: 'blog', status: false, type: 'boolean', answer: null, 
+                    fail_message: 'Employers might prefer to look at a portfolio website, you should share a link to yours via the profile settings.' },
+                { id: 'has_location', api_key: 'location', status: false, type: 'boolean', answer: null, 
+                    fail_message: 'There is no location associated with your account. Doing so will let employers know if they\'re looking at somebody local' },
+                { id: 'is_hireable', api_key: 'hireable', status: false, type: 'boolean', answer: null, 
+                    fail_message: 'You\'re profile says you\'re not hireable. An employer might not choose to ignore that.' },
                 { id: 'num_repos', api_key: 'public_repos', status: false, type: 'num', answer: null, 
-                    min_val: 1, max_val: 6 }
+                    min_val: 1, max_val: 4, 
+                    fail_message: 'You have no public code repositories. Change this to let employers see what you can do!', 
+                    min_pass_message: val => `You have less than ${val} public repositories. This is a good start, but you should consider sharing more projects for employers to get a better understand of what you're capable of` }
             ],
             tests_complete: false,
             current_test: 0
@@ -88,7 +96,7 @@ class User extends Component {
                             : this.state.current_test - 1;
 
         return (
-            <div className="container-fluid">
+            <div>
                 <Header 
                     username={this.state.username} 
                     match={this.props.match} 

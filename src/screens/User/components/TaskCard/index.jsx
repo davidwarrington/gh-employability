@@ -2,10 +2,14 @@ import React, { Component } from 'react';
 
 class TaskCard extends Component {
     answer = test => {
-        if (this.props.test.type === 'boolean') {
-            return `Your ${test.api_key} is: "${test.answer}"`; 
-        } else if (this.props.test.type === 'num') {
-            return `Your ${test.api_key} is: "${test.answer}"`; 
+        if (test.type === 'boolean') {
+            return test.fail_message; 
+        } else if (test.type === 'num') {
+            if (test.status === false) {
+                return test.fail_message; 
+            } else {
+                return test.min_pass_message(test.max_val);
+            }
         }
     }
 
