@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 
 class TaskCard extends Component {
     answer = test => {
-        if (test.type === 'boolean') {
+        if (test.status === true) {
+            return test.pass_message(test.answer);
+        } else if (test.type === 'boolean') {
             return test.fail_message; 
         } else if (test.type === 'num') {
             if (test.status === false) {
