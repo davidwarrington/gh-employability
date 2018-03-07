@@ -5,6 +5,8 @@ import Header from './components/Header';
 import TaskCard from './components/TaskCard';
 import NavButton from './components/Task__NavButton';
 
+import api_fetch from './utilities/fetch';
+
 class User extends Component {
     constructor(props) {
         super(props);
@@ -44,27 +46,7 @@ class User extends Component {
     }
 
     componentWillMount() {
-        // If the User screen will mount, fetch GitHub user info
-        // Use Fetch API for getting info from GitHub API
-        fetch(`https://api.github.com/users/${this.props.match.params.username}`)
-            .then(response => response.json())
-            .then(json => {
-                json.message === "Not Found" ? console.error('User does not exist') : this.setState({ api_data: json });
-            })
-            .then(() => {
-                this.setState({
-                    username: this.state.api_data.login,
-                    avatar_url: this.state.api_data.avatar_url
-                })
-            })
-            .then(() => {
-                this.state.api_tests.forEach(test => {
-                    // console.log(test);
-                    test.status = this.testQuery(test);
-                });
-                this.setState({ tests_complete: true });
-            })
-            .catch(ex => console.log('Parsing Failed', ex));
+        api_fetch(this);
     }
 
     testQuery = (test) => {
