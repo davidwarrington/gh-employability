@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import IgnoreButton from '../IgnoreButton';
+
 class TaskCard extends Component {
     answer = test => {
         if (test.status === true) {
@@ -24,8 +26,26 @@ class TaskCard extends Component {
     render() {
         return (
             <li 
-                className="col-12 col-md-3 col-lg-2 py-2"
-            >{this.answer(this.props.test)}</li>
+                className="col-12 col-md-3 py-2 d-flex flex-column justify-content-between"
+            >
+                {this.answer(this.props.test)}
+
+                <div className="btn-group">
+                    <IgnoreButton 
+                        taskIgnoreHandler={this.props.taskIgnoreHandler} 
+                        test={this.props.test} 
+                        index={this.props.index}
+                    />
+                    {this.props.hideRecheck 
+                        ? null
+                        : <button 
+                            className="btn btn-success"
+                            onClick={this.props.apiFetchHandler}>
+                            Check Again
+                          </button>
+                    }
+                </div>
+            </li>
         )
     }
 }

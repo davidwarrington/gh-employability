@@ -9,6 +9,8 @@ const api_fetch = component => {
      */
     const temp_state = component.state;
 
+    // console.log('attempt made');
+
     // Use Fetch API for getting info from GitHub API
     fetch(`https://api.github.com/users/${component.state.username}`)
         .then(response => response.json())
