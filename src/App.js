@@ -13,12 +13,12 @@ class App extends Component {
       <Router>
         <Switch>
           <Route 
-            exact
+            exact 
             path="/" 
             component={Home}
           />
           <Route 
-            path="/:username"
+            path="/:username" // /:username and /:username/all both match this route
             render={({ match, history }) => <User match={match} history={history}/>}
           />
         </Switch>

@@ -12,13 +12,19 @@ class TaskCard extends Component {
             } else {
                 return test.min_pass_message(test.max_val);
             }
+        } else if (test.type === 'date_range') {
+            if (test.status === false) {
+                return test.fail_message;
+            } else {
+                return test.min_pass_message(test.answer, test.max_days);
+            }
         }
     }
 
     render() {
         return (
             <li 
-                className="col-3"
+                className="col-12 col-md-3 col-lg-2 py-2"
             >{this.answer(this.props.test)}</li>
         )
     }
