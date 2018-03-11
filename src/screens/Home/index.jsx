@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
-// import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import './index.css';
+import logo from './github_logo.svg';
 
 class Home extends Component {
+
     submitHandler = event => {
         event.preventDefault();
         let route = `/${event.target.elements['username'].value}`;
@@ -11,16 +13,12 @@ class Home extends Component {
 
     render() {
         return (
-            <div className="container">
-                <div className="row">
-                    <div className="col-12">
-                        {/* <img src="#" alt="#"/> */}
-                        <h1 className="text-center">Github Employability Profiler</h1>
-                    </div>
-                </div>
+            <div className="home container-fluid d-flex flex-column justify-content-center bg-light">
+                <img src={logo} alt="GitHub Logo" className="col-10 col-md-3 mx-auto mb-3" />
+                <h1 className="text-center">Github Employability Profiler</h1>
 
                 <div className="row">
-                    <div className="col-12 col-md-4 mx-auto">
+                    <div className="col-12 col-md-3 mx-auto">
                         <form action="#" onSubmit={this.submitHandler}>
                             <div className="input-group">
                                 <input 
