@@ -1,5 +1,6 @@
 {
   "name": "gh-employability",
+  "homepage": "https://davidwarrington.github.io/gh-employability",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
