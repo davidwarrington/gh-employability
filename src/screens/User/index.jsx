@@ -9,6 +9,8 @@ import api_fetch from './utilities/fetch';
 
 import tests from './data/tests.jsx';
 
+import './user.css';
+
 class User extends Component {
     constructor(props) {
         super(props);
@@ -39,7 +41,8 @@ class User extends Component {
     taskIgnoreHandler = (test, index) => {
         test.ignored ? test.ignored = false : test.ignored = true;
         const newTests = this.state.api_tests;
-        newTests[index] = test;
+        // console.log(index);
+        // newTests[index] = test;
 
         this.setState({
             api_tests: newTests
@@ -57,7 +60,7 @@ class User extends Component {
                             : this.state.current_test - 1;
 
         return (
-            <div>
+            <div className="user-container">
                 <Header 
                     username={this.state.username} 
                     match={this.props.match} 
@@ -66,7 +69,7 @@ class User extends Component {
                 <Route 
                     exact
                     path="/:username"
-                    render={() => <div className="container-fluid">
+                    render={() => <div className="task-container container-fluid d-flex flex-column justify-content-center">
                                     <ul className="row list-unstyled">
                                         {failed_tests.length 
                                             ? <TaskCard 
@@ -83,7 +86,7 @@ class User extends Component {
                                         }
                                     </ul>
                                         {failed_tests.length
-                                            ? <div className="btn-group">
+                                            ? <div className="task_nav row d-flex justify-content-around position-absolute w-100">
                                                 <NavButton 
                                                     text="Previous"
                                                     task_index={prev_test}
@@ -104,7 +107,7 @@ class User extends Component {
                     exact
                     path="/:username/all"
                     render={() => 
-                                  <div className="container-fluid">
+                                  <div className="user-container container-fluid">
                                     <ul className="row list-unstyled">
                                         {
                                             this.state.api_tests.map((test, index) => {

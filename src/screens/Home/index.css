@@ -2,3 +2,13 @@ html, body,
 #root, .home {
     height: 100%;
 }
+
+.app-logo {
+    width: 25%;
+}
+
+@media (min-width: 768px) {
+    .app-logo {
+        width: 12.5%;
+    }
+}

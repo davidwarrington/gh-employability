@@ -14,11 +14,11 @@ class Home extends Component {
     render() {
         return (
             <div className="home container-fluid d-flex flex-column justify-content-center bg-light">
-                <img src={logo} alt="GitHub Logo" className="col-10 col-md-3 mx-auto mb-3" />
+                <img src={logo} alt="GitHub Logo" className="app-logo mb-3 mx-auto" />
                 <h1 className="text-center">Github Employability Profiler</h1>
 
                 <div className="row">
-                    <div className="col-12 col-md-3 mx-auto">
+                    <div className="col-12 col-md-6 col-lg-3 mx-auto">
                         <form action="#" onSubmit={this.submitHandler}>
                             <div className="input-group">
                                 <input 

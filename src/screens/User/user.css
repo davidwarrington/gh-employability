@@ -1,0 +1,5 @@
+html, body, 
+#root, .user-container, 
+.task-container {
+    height: 100%;
+}
