@@ -1,0 +1,25 @@
+body {
+  background: #fafafa; }
+
+.username-form {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex; }
+
+.username-form--input {
+  -webkit-border-radius: 0;
+          border-radius: 0; }
+  .username-form--input:first-child {
+    -webkit-border-top-left-radius: .25rem;
+            border-top-left-radius: .25rem;
+    -webkit-border-bottom-left-radius: .25rem;
+            border-bottom-left-radius: .25rem; }
+  .username-form--input:last-child {
+    -webkit-border-top-right-radius: .25rem;
+            border-top-right-radius: .25rem;
+    -webkit-border-bottom-right-radius: .25rem;
+            border-bottom-right-radius: .25rem; }
+
+.username-form--username-input {
+  width: 100%; }

@@ -13,25 +13,24 @@ class Home extends Component {
 
     render() {
         return (
-            <div className="home container-fluid d-flex flex-column justify-content-center bg-light">
+            <div className="home container-fluid d-flex flex-column justify-content-center">
                 <img src={logo} alt="GitHub Logo" className="app-logo mb-3 mx-auto" />
-                <h1 className="text-center">Github Employability Profiler</h1>
+                <h1 className="text-center">
+                    {/* Github Employability Profiler */}
+                    GitHub Profile Checker
+                </h1>
 
                 <div className="row">
                     <div className="col-12 col-md-6 col-lg-3 mx-auto">
-                        <form action="#" onSubmit={this.submitHandler}>
-                            <div className="input-group">
-                                <input 
-                                    type="text" 
-                                    placeholder="Enter Github Username..."
-                                    name="username" 
-                                    id="username_input" 
-                                    className="form-control" 
-                                />
-                                <div className="input-group-append">
-                                    <button type="submit" className="btn btn-info">GO</button>
-                                </div>
-                            </div>
+                        <form action="#" onSubmit={this.submitHandler} className="username-form">
+                            <input 
+                                type="text" 
+                                placeholder="Enter Github Username..."
+                                name="username" 
+                                id="username_input" 
+                                className="form-control username-form--username-input username-form--input" 
+                            />
+                            <button type="submit" className="btn btn-info username-form--input">GO</button>
                         </form>
                     </div>
                 </div>

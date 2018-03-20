@@ -7,20 +7,20 @@ import './TaskCard.css';
 class TaskCard extends Component {
     answer = test => {
         if (test.status === true) {
-            return test.pass_message(test.answer);
+            return test.pass_message();
         } else if (test.type === 'boolean') {
             return test.fail_message; 
         } else if (test.type === 'num') {
             if (test.status === false) {
                 return test.fail_message; 
             } else {
-                return test.min_pass_message(test.max_val);
+                return test.min_pass_message();
             }
         } else if (test.type === 'date_range') {
             if (test.status === false) {
                 return test.fail_message;
             } else {
-                return test.min_pass_message(test.answer, test.max_days);
+                return test.min_pass_message();
             }
         }
     }
