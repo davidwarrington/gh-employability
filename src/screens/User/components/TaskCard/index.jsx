@@ -10,7 +10,7 @@ class TaskCard extends Component {
             return test.pass_message();
         } else if (test.type === 'boolean') {
             return test.fail_message; 
-        } else if (test.type === 'num') {
+        } else if (test.type === 'range') {
             if (test.status === false) {
                 return test.fail_message; 
             } else {

@@ -1,15 +1,56 @@
 body {
   background: #fafafa; }
 
+.btn {
+  border: none; }
+
+h1 {
+  text-align: center; }
+
+.home {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center; }
+
+.app-logo {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 25%; }
+
+@media (min-width: 768px) {
+  .app-logo {
+    width: 12.5%; } }
+
 .username-form {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
-  display: flex; }
+  display: flex;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%; }
+  @media (min-width: 768px) {
+    .username-form {
+      width: 33%; } }
+  @media (min-width: 992px) {
+    .username-form {
+      width: 25%; } }
 
 .username-form--input {
   -webkit-border-radius: 0;
-          border-radius: 0; }
+          border-radius: 0;
+  padding: 1rem; }
   .username-form--input:first-child {
     -webkit-border-top-left-radius: .25rem;
             border-top-left-radius: .25rem;
@@ -22,4 +63,9 @@ body {
             border-bottom-right-radius: .25rem; }
 
 .username-form--username-input {
+  border: 1px solid grey;
   width: 100%; }
+
+.username-form--submit {
+  background: #3591cf;
+  color: white; }

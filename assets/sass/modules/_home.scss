@@ -1,21 +1,18 @@
-.username-form {
+.home {
     display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
-.username-form--input {
-    border-radius: 0;
-
-    &:first-child {
-        border-top-left-radius: .25rem;
-        border-bottom-left-radius: .25rem;
-    }
-
-    &:last-child {
-        border-top-right-radius: .25rem;
-        border-bottom-right-radius: .25rem;
-    }
+.app-logo {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 25%;
 }
 
-.username-form--username-input {
-    width: 100%;
+@media (min-width: 768px) {
+    .app-logo {
+        width: 12.5%;
+    }
 }

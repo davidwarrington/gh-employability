@@ -1,10 +1,29 @@
+/**
+ * We import React from 'react' here to allow the compiler, to 
+ * compile JSX, which allows us to write HTML within our JS code.
+ */
 import React from 'react';
 
+/**
+ * An array of tests that will be used by the web app.
+ * 
+ * The 'status', 'ignored' and 'answer' properties 
+ * are not necessary however they have been used to 
+ * help visualise the objects as the browser sees 
+ * them during runtime.
+ * 
+ * The standard function() declaration has been used 
+ * instead of arrow functions within these tests 
+ * as arrow functions do not have a 'this' value, 
+ * therefore object properties have to be passed as 
+ * function parameters, requiring the functions to 
+ * be called elsewhere.
+ */
 const tests = [
     { 
         id: 'has_name', 
         api_key: 'name', 
-        status: false, 
+        status: false,
         ignored: false, 
         type: 'boolean', 
         answer: null, 
@@ -68,7 +87,7 @@ const tests = [
         api_key: 'public_repos', 
         status: false, 
         ignored: false, 
-        type: 'num', 
+        type: 'range', 
         answer: null, 
         min_val: 1, 
         max_val: 4, 
@@ -93,4 +112,8 @@ const tests = [
     }
 ];
 
+/**
+ * Export the 'tests' array from this 
+ * file, ready to be imported elsewhere.
+ */
 export default tests;

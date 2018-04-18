@@ -1,0 +1,39 @@
+.username-form {
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+
+    @include breakpoint-up(md) {
+        width: 33%;
+    }
+
+    @include breakpoint-up(lg) {
+        width: 25%;
+    }
+}
+
+.username-form--input {
+    border-radius: 0;
+    padding: 1rem;
+
+    &:first-child {
+        border-top-left-radius: .25rem;
+        border-bottom-left-radius: .25rem;
+    }
+
+    &:last-child {
+        border-top-right-radius: .25rem;
+        border-bottom-right-radius: .25rem;
+    }
+}
+
+.username-form--username-input {
+    border: 1px solid grey;
+    width: 100%;
+}
+
+.username-form--submit {
+    background: rgb(53, 145, 207);
+    color: white;
+}
