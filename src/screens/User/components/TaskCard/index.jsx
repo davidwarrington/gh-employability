@@ -31,6 +31,7 @@ class TaskCard extends Component {
                 className="task-card--container"
             >
                 <div className="task-card">
+                    <h2>{this.props.test.title}</h2>
                     {this.answer(this.props.test)}
                     <div className="task-card--controls">
                         <IgnoreButton 
