@@ -1,21 +1,17 @@
-.username-form {
+.home {
     display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 100vh;
 }
 
-.username-form--input {
-    border-radius: 0;
+.app-logo {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 25%;
 
-    &:first-child {
-        border-top-left-radius: .25rem;
-        border-bottom-left-radius: .25rem;
+    @include breakpoint-up(md) {
+        width: 12.5%;
     }
-
-    &:last-child {
-        border-top-right-radius: .25rem;
-        border-bottom-right-radius: .25rem;
-    }
-}
-
-.username-form--username-input {
-    width: 100%;
 }

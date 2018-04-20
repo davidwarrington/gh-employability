@@ -1,3 +1,6 @@
-input[type=text] {
-    background: tomato;
+.btn {
+    background: $secondary;
+    border: none;
+    font-family: $font-family;
+    padding: space(lg);
 }
