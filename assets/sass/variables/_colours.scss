@@ -1,1 +1,7 @@
-$body-bg: darken(white, 2%);
+$black: black;
+$white: white;
+$blue: rgb(53, 145, 207);
+
+$primary: lighten($black, 20%);
+$secondary: darken($white, 2%);
+$cta: $blue;

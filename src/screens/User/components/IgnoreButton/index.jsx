@@ -8,7 +8,7 @@ class IgnoreButton extends Component {
     render() {
         return (
             <button
-                className="btn btn-info"
+                className="task-card--control-button btn"
                 onClick={this.taskIgnoreHandler}>
                 {!this.props.test.ignored ? 'Ignore Task' : 'Stop Ignoring'}
             </button>

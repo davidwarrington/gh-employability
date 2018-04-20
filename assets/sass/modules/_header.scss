@@ -1,0 +1,85 @@
+.header {
+    align-items: center;
+    background: white;
+    box-shadow: 0 0 40px rgba($black, 0.3);
+    display: flex;
+    // justify-content: space-between;
+    padding-left: space(xl);
+    padding-right: space(xl);
+
+    @include breakpoint-down(sm) {
+        padding-left: space(md);
+        padding-right: space(md);
+    }
+}
+
+.nav {
+    align-items: center;
+    align-self: stretch;
+    display: flex;
+    margin-left: auto;
+
+    @include breakpoint-down(sm) {
+        bottom: 0;
+        left: 0;
+        // padding-bottom: space(lg);
+        // padding-top: space(lg);
+        position: fixed;
+        width: 100%;
+        z-index: 10;
+    }
+
+    &--list {
+        display: flex;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+
+        @include breakpoint-down(sm) {
+            width: 100%;
+        }
+    }
+
+    &--item {
+        height: 100%;
+
+        @include breakpoint-down(sm) {
+            flex: 1;
+            padding-bottom: space(lg);
+            padding-top: space(lg);
+            text-align: center;
+
+            &__primary {
+                background: $primary;
+                color: $secondary;
+            }
+
+            &__danger {
+                background: darken(tomato, 5%);
+                color: $white;
+            }
+        }
+
+        &:not(:first-of-type){
+            margin-left: space(lg);
+
+            @include breakpoint-down(sm) {
+                margin: 0;
+            }
+        }
+    }
+
+    &--link {
+        font-size: 1.25rem;
+        padding-bottom: space(md);
+        text-decoration: none;
+
+        &:hover {
+            border-bottom: 3px $primary solid;
+        }
+
+        @include breakpoint-down(sm) {
+            width: 100%;
+        }
+    }
+}

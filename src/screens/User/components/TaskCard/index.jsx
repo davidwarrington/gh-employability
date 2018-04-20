@@ -28,11 +28,11 @@ class TaskCard extends Component {
     render() {
         return (
             <li 
-                className="task-card col-12 col-md-3 mx-auto"
+                className="task-card--container"
             >
-                <div className="task-card--container py-2 d-flex flex-column justify-content-between align-items-center">
+                <div className="task-card">
                     {this.answer(this.props.test)}
-                    <div className="btn-group">
+                    <div className="task-card--controls">
                         <IgnoreButton 
                             taskIgnoreHandler={this.props.taskIgnoreHandler} 
                             test={this.props.test} 
@@ -41,7 +41,7 @@ class TaskCard extends Component {
                         {this.props.hideRecheck 
                             ? null
                             : <button 
-                                className="btn btn-success"
+                                className="task-card--control-button btn"
                                 onClick={this.props.apiFetchHandler}>
                                 Check Again
                             </button>

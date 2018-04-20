@@ -183,8 +183,8 @@ class User extends Component {
                 <Route 
                     exact
                     path="/:username"
-                    render={() => <div className="task-container container-fluid d-flex flex-column justify-content-center">
-                                    <ul className="row list-unstyled">
+                    render={() => <div className="task-container">
+                                    <ul className="task-list">
                                         {failed_tests.length 
                                             ? <TaskCard 
                                                 test={failed_tests[this.state.current_test]} 
@@ -200,7 +200,7 @@ class User extends Component {
                                         }
                                     </ul>
                                         {failed_tests.length
-                                            ? <div className="task_nav row d-flex justify-content-around position-absolute w-100">
+                                            ? <div className="task-nav">
                                                 <NavButton 
                                                     text="Previous"
                                                     task_index={prev_test}
@@ -221,8 +221,8 @@ class User extends Component {
                     exact
                     path="/:username/all"
                     render={() => 
-                                  <div className="user-container container-fluid">
-                                    <ul className="row list-unstyled">
+                                  <div className="all-container task-container">
+                                    <ul className="task-list">
                                         {
                                             this.state.api_tests.map((test, index) => {
                                                 return <TaskCard 

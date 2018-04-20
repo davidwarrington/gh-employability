@@ -8,7 +8,7 @@ class NavButton extends Component {
     render() {
         return (
             <button
-                className="btn btn-info"
+                className="task-nav--button btn"
                 task_index={this.props.task_index}
                 onClick={this.changeTaskHandler}>
                 {this.props.text}
