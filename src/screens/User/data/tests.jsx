@@ -24,51 +24,91 @@ const tests = [
         id: 'has_name',
         api_key: 'name',
         type: 'boolean',
-        fail_message: <p>You have no name set. Change this to let an employer know who you are.</p>, 
-        pass_message: function() { return `Congrats! Employers can see that you are ${this.answer}.` }, 
-        title: 'Name'
+        title: 'Name',
+        message: function () {
+            var message;
+            if (this.status === true) {
+                message = `Congrats! Employers can see that you are ${this.answer}.`;
+            } else {
+                message = `You have no name set. Change this to let an employer know who you are.`;
+            }
+            return (<p>{message}</p>);
+        }
     },
     { 
         id: 'has_bio', 
         api_key: 'bio', 
         type: 'boolean', 
-        fail_message: <p>Write a brief bio to give potential employers an idea of what makes you tick.</p>, 
-        pass_message: function() { return `You have a bio! Hopefully this leaves employers with a good impression of you.` }, 
-        title: 'Bio'
+        title: 'Bio',
+        message: function () {
+            var message;
+            if (this.status === true) {
+                message = `You have a bio! Hopefully this leaves employers with a good impression of you.`;
+            } else {
+                message = `Write a brief bio to give potential employers an idea of what makes you tick.`;
+            }
+            return (<p>{message}</p>);
+        }
     },
     { 
         id: 'has_email', 
         api_key: 'email', 
         type: 'boolean', 
-        fail_message: <p>You have no email address available. Change this to let employers contact you.</p>, 
-        // pass_message: val => <p>Congrats! Employers can contact you here: <a href={`mailto:${val}`}>{val}</a>.</p> 
-        pass_message: function() { return `Congrats! Employers can contact you here: ${this.answer}.` }, 
-        title: 'Email'
+        title: 'Email',
+        message: function () {
+            var message;
+            if (this.status === true) {
+                message = `Congrats! Employers can contact you here: ${this.answer}.`;
+            } else {
+                message = `You have no email address available. Change this to let employers contact you.`;
+            }
+            return (<p>{message}</p>);
+        }
     },
     { 
         id: 'has_website', 
         api_key: 'blog', 
         type: 'boolean', 
-        fail_message: <p>Employers might prefer to look at a portfolio website, you should share a link to yours via the profile settings.</p>,
-        // pass_message: val => <p>Employers can see your work here: <a href={val}>{val}</a>.</p> 
-        pass_message: function() { return `Employers can see your work here: ${this.answer}` }, 
-        title: 'Website'
+        title: 'Website',
+        message: function() {
+            var message;
+            if (this.status === true) {
+                message = `You have a website available for employers to see!`;
+            } else {
+                message = `Employers might prefer to look at a portfolio website, you should share a link to yours via the profile settings.`;
+            }
+            return (<p>{message}</p>);
+        }
     },
     { 
-        id: 'has_location', 
-        api_key: 'location', 
-        type: 'boolean', 
-        fail_message: <p>There is no location associated with your account. Doing so will let employers know if they're looking at somebody local</p>,
-        pass_message: function() { return `Employers in the region of ${this.answer} may be more keen to contact you.` }, 
-        title: 'Location'
+        id: 'has_location',
+        api_key: 'location',
+        type: 'boolean',
+        title: 'Location',
+        message: function() {
+            var message;
+            if (this.status === true) {
+                message = `Employers in the region of ${this.answer} may be more keen to contact you.`;
+            } else {
+                message = `There is no location associated with your account. Doing so will let employers know if they're looking at somebody local.`;
+            }
+            return (<p>{message}</p>);
+        }
     },
     { 
         id: 'is_hireable', 
         api_key: 'hireable', 
         type: 'boolean', 
-        fail_message: <p>You're profile says you're not hireable. An employer might not choose to ignore that.</p>,
-        pass_message: function() { return `You're letting people know that you are hireable.` }, 
-        title: 'Hireable'
+        title: 'Hireable',
+        message: function () {
+            var message;
+            if (this.status === true) {
+                message = `You're letting employers know that you are hireable.`;
+            } else {
+                message = `You're profile says you're not hireable.`;
+            }
+            return (<p>{message}</p>);
+        }
     },
     { 
         id: 'num_repos', 
@@ -76,10 +116,18 @@ const tests = [
         type: 'range', 
         min_val: 1, 
         max_val: 4, 
-        fail_message: <p>You have no public code repositories. Change this to let employers see what you can do!</p>, 
-        min_pass_message: function() { return `You have less than ${this.max_val} public repositories. This is a good start, but you should consider sharing more projects for employers to get a better understand of what you're capable of.` },
-        pass_message: function() { return `You have ${this.answer} public code repositories. This should be enough to demonstrate your abilities.` }, 
-        title: 'Public Repositories'
+        title: 'Public Repositories',
+        message: function () {
+            var message;
+            if (this.status === true) {
+                message = `You have ${this.answer} public code repositories. This should be enough to demonstrate your abilities.`;
+            } else if (this.status === false) {
+                message = `You have no public code repositories. Change this to let employers see what you can do!`;
+            } else {
+                message = `You have less than ${this.max_val} public repositories. You should consider sharing more projects for employers to get a better understand of what you're capable of.`;
+            }
+            return (<p>{message}</p>);
+        }
     },
     {
         id: 'is_active',
@@ -89,10 +137,18 @@ const tests = [
         min_days: 7,
         max_days: 21,
         max_events: 8,
-        fail_message: <p>Your account would appear to be abandoned. Try pushing being more active to show that you are still writing code.</p>,
-        min_pass_message: function() { return `There have been ${this.answer} events associated with you in the past ${this.max_days} days. Your account doesn't look abandoned but it's recommended that you start using it more.` },
-        pass_message: function() { return `You've done at least ${this.answer} things publicly with your account recently. This is great, people can see you are actively working on projects.` },
-        title: 'Active Account'
+        title: 'Active Account',
+        message: function () {
+            var message;
+            if (this.status === true) {
+                message = `You've done at least ${this.answer} things publicly with your account recently. This is great, people can see you are actively working on projects.`;
+            } else if (this.status === false) {
+                message = `Your account would appear to be abandoned. Try being more active to show that you are still writing code.`;
+            } else {
+                message = `There have been ${this.answer} events associated with you in the past ${this.max_days} days. Your account doesn't look abandoned but it's recommended that you start using it more.`;
+            }
+            return (<p>{message}</p>);
+        }
     }
 ];
 

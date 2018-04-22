@@ -5,34 +5,12 @@ import IgnoreButton from '../IgnoreButton';
 import './TaskCard.css';
 
 class TaskCard extends Component {
-    answer = test => {
-        if (test.status === true) {
-            return test.pass_message();
-        } else if (test.type === 'boolean') {
-            return test.fail_message; 
-        } else if (test.type === 'range') {
-            if (test.status === false) {
-                return test.fail_message; 
-            } else {
-                return test.min_pass_message();
-            }
-        } else if (test.type === 'date_range') {
-            if (test.status === false) {
-                return test.fail_message;
-            } else {
-                return test.min_pass_message();
-            }
-        }
-    }
-
     render() {
         return (
-            <li 
-                className="task-card--container"
-            >
+            <li className="task-card--container">
                 <div className="task-card">
                     <h2>{this.props.test.title}</h2>
-                    {this.answer(this.props.test)}
+                    {this.props.test.message()}
                     <div className="task-card--controls">
                         <IgnoreButton 
                             taskIgnoreHandler={this.props.taskIgnoreHandler} 
@@ -45,7 +23,7 @@ class TaskCard extends Component {
                                 className="task-card--control-button btn"
                                 onClick={this.props.apiFetchHandler}>
                                 Check Again
-                            </button>
+                              </button>
                         }
                     </div>
                 </div>
