@@ -1,7 +1,9 @@
 // import eventRangeHandler from '../testHandlers';
 import testQuery from '../testHandlers';
 
-const api_fetch = component => {
+const api_fetch = (component, username) => {
+
+    const req_url = `https://api.github.com/users/${username}`
 
     /**
      * Create a copy of the component state so that once all changes are complete
@@ -12,7 +14,7 @@ const api_fetch = component => {
     // console.log('attempt made');
 
     // Use Fetch API for getting info from GitHub API
-    fetch(`https://api.github.com/users/${component.state.username}`)
+    fetch(req_url)
         .then(response => response.json())
         .then(json => {
             json.message === 'Not Found'
@@ -25,7 +27,7 @@ const api_fetch = component => {
         })
 
 
-        .then(() => fetch(`https://api.github.com/users/${component.state.username}/events`))
+        .then(() => fetch(`${req_url}/events`))
         .then(response => response.json())
         .then(json => {
             // console.log(json);

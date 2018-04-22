@@ -25,13 +25,15 @@ class User extends Component {
         }
     }
 
+    /**
+     * If the User Screen will mount, fetch GitHub user info
+     */
     componentWillMount() {
-        // If the User screen will mount, fetch GitHub user info
-        api_fetch(this);
+        this.apiFetchHandler();
     }
 
     apiFetchHandler = () => {
-        api_fetch(this);
+        api_fetch(this, this.state.username);
     }
 
     taskNavHandler = dir => {
