@@ -9,7 +9,7 @@ const api_fetch = component => {
      * Establish a base url to use for API requests, 
      * based on the username passed to the component object.
      */
-    const req_url = `https://api.github.com/users/${component.state.username}`
+    const req_url = `https://api.github.com/users/${component.state.username}`;
 
     /**
      * Create a copy of the component state so that once all changes are complete
