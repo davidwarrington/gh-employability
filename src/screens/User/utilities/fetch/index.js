@@ -6,6 +6,12 @@ import testQuery from '../testHandlers';
 const api_fetch = component => {
 
     /**
+     * Establish a base url to use for API requests, 
+     * based on the username passed to the component object.
+     */
+    const req_url = `https://api.github.com/users/${component.state.username}`
+
+    /**
      * Create a copy of the component state so that once all changes are complete
      * the component state can be updated at once reducing unecessary re-renders
      */
@@ -19,7 +25,7 @@ const api_fetch = component => {
      * 
      * Fetch uses the new Promise API to request data from a URL/URI
      */
-    fetch(`https://api.github.com/users/${component.state.username}`)
+    fetch(req_url)
         /**
          * The .then() method is used to make use of the data fetched, 
          * once the fetch promise has been resolved, the information it
@@ -72,7 +78,7 @@ const api_fetch = component => {
          * A new fetch is created to get the users 'events' info from the 
          * GitHub REST API.
          */
-        .then(() => fetch(`https://api.github.com/users/${component.state.username}/events`))
+        .then(() => fetch(`${req_url}/events`))
         /**
          * Again, the response is converted to a JSON object.
          */

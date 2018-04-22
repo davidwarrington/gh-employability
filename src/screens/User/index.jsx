@@ -97,14 +97,14 @@ class User extends Component {
 
     /**
      * If the User screen will mount, 
-     * run the api_fetch function to 
+     * run the apiFetchHandler function to 
      * get user information from GitHub.
      * 
      * componentWillMount() found here:
      * https://reactjs.org/docs/react-component.html#componentwillmount
      */
     componentWillMount() {
-        api_fetch(this);
+        this.apiFetchHandler();
     }
 
     apiFetchHandler = () => {
