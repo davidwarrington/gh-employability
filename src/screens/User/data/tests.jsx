@@ -6,12 +6,7 @@ import React from 'react';
 
 /**
  * An array of tests that will be used by the web app.
- * 
- * The 'status', 'ignored' and 'answer' properties 
- * are not necessary however they have been used to 
- * help visualise the objects as the browser sees 
- * them during runtime.
- * 
+ *
  * The standard function() declaration has been used 
  * instead of arrow functions within these tests 
  * as arrow functions do not have a 'this' value, 

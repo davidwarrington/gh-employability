@@ -49,8 +49,8 @@ import './user.css';
 /**
  * Create the 'User' component for this screen.
  * 
- * class X extends Y creates a new 
- * class, X, with Y as foundation.
+ * class X extends Y creates a new class, 
+ * X, with all of the base properties of Y.
  */
 class User extends Component {
     /**
