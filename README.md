@@ -5,7 +5,7 @@ Project by David Warrington
 This project makes used of the ReactJS framework. It was bootstrapped using the Create-React-App project. It can be seen live at [gh.davidwarrington.co.uk](https://gh.davidwarrington.co.uk).
 
 ## Table of Contents
-- [How to develop](#how-to-use)
+- [How to develop](#how-to-develop)
   - [Adding New Tests](#adding-new-tests)
   - [Adding Test Types](#adding-test-types)
 - [Tools Used](#tools-used)
