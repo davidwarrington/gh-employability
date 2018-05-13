@@ -3,7 +3,9 @@
           box-sizing: border-box; }
 
 body {
-  background: #fafafa; }
+  background: #fafafa;
+  margin: 0;
+  padding: 0; }
 
 .btn {
   background: #fafafa;
@@ -192,14 +194,14 @@ h1 {
   @media (max-width: 576px) {
     .task-card--container {
       width: 90%; } }
-  .all-container .task-card--container {
-    -webkit-box-shadow: none;
-            box-shadow: none; }
   .task-container:not(.all-container) .task-card--container {
     margin-left: auto;
     margin-right: auto;
     min-height: 50vh;
     width: 30%; }
+    @media (max-width: 768px) {
+      .task-container:not(.all-container) .task-card--container {
+        width: 60%; } }
 
 .task-card {
   -webkit-box-align: center;
@@ -228,7 +230,8 @@ h1 {
     display: flex;
     -webkit-justify-content: space-around;
         -ms-flex-pack: distribute;
-            justify-content: space-around; }
+            justify-content: space-around;
+    width: 100%; }
 
 .task-nav {
   display: -webkit-box;
@@ -257,6 +260,9 @@ h1 {
             box-shadow: 0 15px 20px rgba(0, 0, 0, 0.05);
     color: white;
     font-weight: 700; }
+
+.task-list--pass-message {
+  text-align: center; }
 
 .user-container {
   display: -webkit-box;
