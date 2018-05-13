@@ -1,10 +1,18 @@
 import React, { Component } from 'react';
-import './index.css';
 import logo from './github_logo.svg';
 
 class Home extends Component {
 
+    /**
+     * submitHandler users React Router 
+     * to push the user to a URL containing 
+     * the username that has been submitted
+     */
     submitHandler = event => {
+        /**
+         * .preventDefault() prevents the default 
+         * action from the event from tiggering
+         */
         event.preventDefault();
         let route = `/${event.target.elements['username'].value}`;
         // console.log(event.target.elements['username'].value);
@@ -24,8 +32,13 @@ class Home extends Component {
                         name="username" 
                         id="username_input" 
                         className="form-control username-form--username-input username-form--input" 
+                        required
                     />
-                    <button type="submit" className="username-form--submit btn username-form--input">GO</button>
+                    <button 
+                        type="submit" 
+                        className="username-form--submit btn username-form--input">
+                        GO
+                    </button>
                 </form>
             </div>
         );

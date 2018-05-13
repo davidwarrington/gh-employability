@@ -3,7 +3,9 @@
           box-sizing: border-box; }
 
 body {
-  background: #fafafa; }
+  background: #fafafa;
+  margin: 0;
+  padding: 0; }
 
 .btn {
   background: #fafafa;
@@ -258,6 +260,9 @@ h1 {
             box-shadow: 0 15px 20px rgba(0, 0, 0, 0.05);
     color: white;
     font-weight: 700; }
+
+.task-list--pass-message {
+  text-align: center; }
 
 .user-container {
   display: -webkit-box;

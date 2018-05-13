@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import './App.css';
 
-// Import React Components
+/**
+ * Import Screens
+ */
 import Home from './screens/Home';
 import User from './screens/User';
 

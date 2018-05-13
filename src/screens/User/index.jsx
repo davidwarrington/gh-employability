@@ -42,11 +42,6 @@ import api_fetch from './utilities/fetch';
 import tests from './data/tests.jsx';
 
 /**
- * Import CSS
- */
-import './user.css';
-
-/**
  * Create the 'User' component for this screen.
  * 
  * class X extends Y creates a new class, 
@@ -180,6 +175,7 @@ class User extends Component {
                     match={this.props.match} 
                     avatar_url={this.state.avatar_url}
                 />
+
                 <Route 
                     exact
                     path="/:username"
@@ -193,8 +189,8 @@ class User extends Component {
                                                 apiFetchHandler={this.apiFetchHandler}
                                               />
                                             : <li className="col-12">
-                                                <h2 className="text-center">
-                                                    There are no more tests to pass!
+                                                <h2 className="task-list--pass-message">
+                                                    Congratulations! Your account passes all of the tests!
                                                 </h2>
                                               </li>
                                         }
@@ -217,6 +213,7 @@ class User extends Component {
                                   </div>
                             }
                 />
+
                 <Route 
                     exact
                     path="/:username/all"
@@ -224,6 +221,16 @@ class User extends Component {
                                   <div className="all-container task-container">
                                     <ul className="task-list">
                                         {
+                                            /**
+                                             * .map() is used to iterate over the
+                                             * api_tests array within the state.
+                                             * 
+                                             * It is used to return all of the task 
+                                             * cards.
+                                             * 
+                                             * Using .map() for lists can be found here: 
+                                             * https://reactjs.org/docs/lists-and-keys.html
+                                             */
                                             this.state.api_tests.map((test, index) => {
                                                 return <TaskCard 
                                                     test={test} 
@@ -233,7 +240,7 @@ class User extends Component {
                                                     apiFetchHandler={this.apiFetchHandler} 
                                                     hideRecheck
                                                 />
-                                                })
+                                            })
                                         }
                                     </ul>
                                   </div>
